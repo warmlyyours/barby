@@ -27,7 +27,6 @@ module Barby
     def to_image(opts={})
       with_options opts do
         canvas = ChunkyPNG::Image.new(full_width, full_height, background)
-
         if barcode.two_dimensional?
           x, y = margin, margin
           booleans.each do |line|
@@ -96,17 +95,16 @@ module Barby
     end
 
     def xdim
-      @xdim || 1
+      (@xdim || 1).to_i
     end
 
     def ydim
-      @ydim || xdim
+      (@ydim || xdim).to_i
     end
 
     def margin
-      @margin || 10
+      (@margin || 10).to_i
     end
-
 
     def background=(c)
       @background = if c.is_a?(String) || c.is_a?(Symbol)
